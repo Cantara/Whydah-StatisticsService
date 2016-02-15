@@ -2,8 +2,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.whydah.service</groupId>
     <artifactId>Whydah-StatisticsService</artifactId>
-    <version>1.0.32-SNAPSHOT</version>
-    <name>Whydah-TypeLib</name>
+    <version>0.0.2-SNAPSHOT</version>
+    <name>Whydah-StatisticsService</name>
     <packaging>jar</packaging>
     <url>https://wiki.cantara.no/display/iam/Whydah-StatisticsService</url>
 
@@ -22,7 +22,6 @@
 
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
-        <jersey.version>2.18</jersey.version>
         <slf4j.version>1.7.13</slf4j.version>
     </properties>
 
