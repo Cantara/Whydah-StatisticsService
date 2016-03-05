@@ -5,6 +5,7 @@ dependency-reduced-pom.xml
 *.jar
 *.war
 *.ear
+*.out
 /target
 /logs
 /.code_swarm
