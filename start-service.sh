@@ -6,7 +6,7 @@ if [ "$Version" = "FROM_SOURCE" ]; then
     # Find the bult artifact
     Version=$(find target/* -name '*.jar' | grep SNAPSHOT | grep -v javadoc |  grep -v original | grep -v lib)
 else
-    Version=Whydah-CRMService.jar
+    Version=Whydah-StatisticsService.jar
 fi
 
 

@@ -1,20 +1,19 @@
 #!/bin/bash
 
-A=valuereporter
-# A=Whydah-StatisticsService
+A=Whydah-StatisticsService
 V=SNAPSHOT
 
 
 if [[ $V == *SNAPSHOT* ]]; then
    echo Note: If the artifact version contains "SNAPSHOT" - the artifact latest greatest snapshot is downloaded, Irrelevent of version number!!!
-   path="http://mvnrepo.cantara.no/content/repositories/snapshots/org/valuereporter/$A"
+   path="http://mvnrepo.cantara.no/content/repositories/snapshots/net/whydah/statistics/$A"
    version=`curl -s "$path/maven-metadata.xml" | grep "<version>" | sed "s/.*<version>\([^<]*\)<\/version>.*/\1/" | tail -n 1`
    echo "Version $version"
    build=`curl -s "$path/$version/maven-metadata.xml" | grep '<value>' | head -1 | sed "s/.*<value>\([^<]*\)<\/value>.*/\1/"`
    JARFILE="$A-$build.jar"
    url="$path/$version/$JARFILE"
 else #A specific Release version
-   path="http://mvnrepo.cantara.no/content/repositories/snapshots/org/valuereporter/$A"
+   path="http://mvnrepo.cantara.no/content/repositories/snapshots/net/whydah/statistics/$A"
    url=$path/$V/$A-$V.jar
    JARFILE=$A-$V.jar
 fi

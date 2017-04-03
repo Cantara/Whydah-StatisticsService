@@ -14,7 +14,6 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.valuereporter.ValuereporterException;
 import org.valuereporter.helper.DatabaseMigrationHelper;
 import org.valuereporter.helper.EmbeddedDatabaseHelper;
-import org.valuereporter.helper.PropertiesHelper;
 import org.valuereporter.helper.StatusType;
 
 import java.io.File;

@@ -10,3 +10,4 @@ admin.connection.port=1433
 admin.connection.password=vrAdmin1234
 admin.connection.host=localhost
 admin.connection.databasename=ValueReporter
+

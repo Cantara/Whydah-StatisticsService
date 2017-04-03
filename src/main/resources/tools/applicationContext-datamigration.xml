@@ -16,7 +16,7 @@
         <property name="locations">
             <list>
                 <value>classpath:valuereporter.properties</value>
-                <!--<value>file:config_override/valuereporter.properties</value>-->
+                <!--<value>file:config_overrapplication.propertiesties</value>-->
             </list>
         </property>
     </bean>
