@@ -1,5 +1,6 @@
 jetty.http.port=4901
 
+#jdbc.setupNewDb=true
 jdbc.useEmbedded=true
 jdbc.driverClassName=org.hsqldb.jdbc.JDBCDriver
 jdbc.url=jdbc:hsqldb:file:db/hsqldb/ValueReporter
