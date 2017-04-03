@@ -164,18 +164,15 @@
                                     <filter>
                                         <artifact>*:*</artifact>
                                         <excludes>
-                                            <exclude>classes/META-INF/*.SF</exclude>
-                                            <exclude>classes/META-INF/*.DSA</exclude>
-                                            <exclude>classes/META-INF/*.RSA</exclude>
+                                            <exclude>META-INF/*.SF</exclude>
+                                            <exclude>META-INF/*.DSA</exclude>
+                                            <exclude>META-INF/*.RSA</exclude>
                                         </excludes>
                                     </filter>
                                 </filters>
                             <artifactSet>
                                 <excludes>
                                     <exclude>junit:junit</exclude>
-                                    <exclude>classes/META-INF/*.SF</exclude>
-                                    <exclude>classes/META-INF/*.DSA</exclude>
-                                    <exclude>classes/META-INF/*.RSA</exclude>
                                 </excludes>
                             </artifactSet>
                             <transformers>
