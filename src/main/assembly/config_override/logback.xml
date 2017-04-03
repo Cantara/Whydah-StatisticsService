@@ -1,0 +1,43 @@
+<configuration scan="true" scanPeriod="60 seconds">
+    <property name="LOG_DIR" value="../logs/" />
+    <property name="env" value="StatisticsService-noEnvSet" />
+    <property name="appName" value="StatisticsService" />
+    <!--<property name="AUDIT_LOG_DIR" value="logs/audit" />-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${appName}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${appName}-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Reduce logging from dependencies -->
+    <logger name="org.eclipse.jetty" level="WARN"/>
+    <logger name="org.apache.activemq" level="INFO"/>
+    <logger name="org.apache.cxf" level="INFO"/>
+    <logger name="org.apache" level="WARN"/>
+    <logger name="org.springframework" level="WARN"/>
+
+
+    <logger name="org.valuereporter" level="DEBUG"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="net.whydah" level="TRACE"/>
+    <root level="info">
+        <appender-ref ref="logfile" />
+        <appender-ref ref="STDOUT" />
+        <!--<appender-ref ref="EMAIL" />-->
+    </root>
+</configuration>
