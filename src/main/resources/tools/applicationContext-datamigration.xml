@@ -1,25 +1,26 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constretto="http://constretto.org/schema/constretto"
        xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
     http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.2.xsd
-	">
+    http://constretto.org/schema/constretto http://constretto.org/schema/constretto/constretto-1.2.xsd">
+
+
+    <constretto:configuration>
+        <constretto:stores>
+            <constretto:properties-store>
+                <constretto:resource location="classpath:application.properties"/>
+                <constretto:resource location="file:./config_override/application.properties"/>
+            </constretto:properties-store>
+        </constretto:stores>
+    </constretto:configuration>
+
 
     <context:component-scan base-package="org.valuereporter"/>
 
-    <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="ignoreResourceNotFound" value="true" />
-
-        <property name="locations">
-            <list>
-                <value>classpath:valuereporter.properties</value>
-                <!--<value>file:config_overrapplication.propertiesties</value>-->
-            </list>
-        </property>
-    </bean>
 
     <bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
 
