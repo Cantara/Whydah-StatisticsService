@@ -72,6 +72,8 @@ public class Main {
         } catch (ValuereporterException e) {
             log.error("Failed to start the server. Reason {}. Port {} ", e.getMessage(), main.getPortNumber());
             main.stopOnError();
+        } catch (Exception e) {
+            log.error("Failed to start. ", e);
         }
     }
 
