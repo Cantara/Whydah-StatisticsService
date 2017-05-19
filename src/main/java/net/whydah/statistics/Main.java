@@ -39,7 +39,7 @@ public class Main {
 
         try{
             new EmbeddedDatabaseHelper(resources).initializeDatabase();
-            if (useLocalDatabase(resources) && isFlywaySupported(resources)) {
+            if (useLocalDatabase(resources) && DatabaseMigrationHelper.isFlywaySupported(resources)) {
                 new DatabaseMigrationHelper(resources).upgradeDatabase();
             }
             jettyPort = PropertiesHelper.findHttpPort(resources);
@@ -142,10 +142,10 @@ public class Main {
     boolean isFlywaySupported(Properties resources) {
         boolean isSupported = false;
         String url = resources.getProperty(DATABASE_URL);
-        if (url != null && url.contains("sqlserver")) {
+        if (url != null && url.contains("mysql")) {
             isSupported = true;
         } else {
-            log.info("Currently database migration supports ms-sql only. Database will not be automatically upgraded.");
+            log.info("Currently database migration supports mysql only. Database will not be automatically upgraded.");
         }
         return isSupported;
     }
