@@ -81,7 +81,7 @@
         <dependency>
             <groupId>org.valuereporter</groupId>
             <artifactId>valuereporter</artifactId>
-            <version>0.9.4-SNAPSHOT</version>
+            <version>0.9.4</version>
         </dependency>
 
 
