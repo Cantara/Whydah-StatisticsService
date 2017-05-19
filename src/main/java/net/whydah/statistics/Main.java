@@ -40,6 +40,7 @@ public class Main {
         try{
             new EmbeddedDatabaseHelper(resources).initializeDatabase();
             if (useLocalDatabase(resources) && DatabaseMigrationHelper.isFlywaySupported(resources)) {
+                log.info("Trying to upgrade database with Flyway");
                 new DatabaseMigrationHelper(resources).upgradeDatabase();
             }
             jettyPort = PropertiesHelper.findHttpPort(resources);
