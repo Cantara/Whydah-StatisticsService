@@ -36,6 +36,7 @@
     <logger name="net.whydah" level="TRACE"/>
     <root level="info">
         <appender-ref ref="logfile"/>
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
 

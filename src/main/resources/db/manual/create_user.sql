@@ -1,0 +1,4 @@
+CREATE USER 'vrAdmin'@'localhost' IDENTIFIED BY 'vrAdmin1234';
+GRANT ALL PRIVILEGES ON *.* TO 'vrAdmin'@'localhost' WITH GRANT OPTION;
+CREATE USER 'vr'@'localhost' IDENTIFIED BY 'vr1234';
+GRANT ALL PRIVILEGES ON *.* TO 'vr'@'localhost' WITH GRANT OPTION;

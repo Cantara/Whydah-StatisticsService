@@ -1,1 +1,1 @@
-CREATE DATABASE valuereporter;
+CREATE DATABASE ValueReporter;
