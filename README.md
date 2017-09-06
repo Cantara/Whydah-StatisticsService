@@ -28,7 +28,7 @@ For more info, see:
 ### Start service
 
 ```
-java -jar target/Whydah-....jar
+java -jar target/Whydah-StatisticsService....jar
 ```
 
 ## Verify setup
