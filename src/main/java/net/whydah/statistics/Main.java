@@ -59,6 +59,7 @@ public class Main {
     }
 
     public static void main(String[] arguments) throws Exception {
+    	
         // Jersey uses java.util.logging - bridge to slf4
         LogManager.getLogManager().reset();
         SLF4JBridgeHandler.removeHandlersForRootLogger();

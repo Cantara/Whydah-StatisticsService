@@ -31,10 +31,10 @@
     <logger name="org.springframework" level="WARN"/>
 
 
-    <logger name="org.valuereporter" level="DEBUG"/>
+    <logger name="org.valuereporter" level="TRACE"/>
     <logger name="org.springframework.web" level="INFO"/>
     <logger name="net.whydah" level="TRACE"/>
-    <root level="info">
+    <root level="TRACE">
         <appender-ref ref="logfile"/>
         <appender-ref ref="STDOUT"/>
     </root>

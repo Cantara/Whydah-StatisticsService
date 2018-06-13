@@ -25,7 +25,7 @@
         <org.valuereporter>0.10.9</org.valuereporter>
         <whydah.sdk.version>2.4.74</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
-        <slf4j.version>1.7.13</slf4j.version>
+        <slf4j.version>1.7.21</slf4j.version>
         <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 
@@ -74,7 +74,34 @@
 
 
     <dependencies>
-
+		<dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>jul-to-slf4j</artifactId>
+	            <version>${slf4j.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>log4j-over-slf4j</artifactId>
+	            <version>${slf4j.version}</version>
+	        </dependency>
+		<dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-api</artifactId>
+	        <version>${slf4j.version}</version>
+	    </dependency>
+	
+	    <dependency>
+	        <groupId>ch.qos.logback</groupId>
+	        <artifactId>logback-classic</artifactId>
+	        <version>1.2.3</version>
+	    </dependency>
+	
+	    <dependency>
+	        <groupId>ch.qos.logback</groupId>
+	        <artifactId>logback-core</artifactId>
+	        <version>1.2.3</version>
+	    </dependency>
+	    
         <dependency>
             <groupId>org.valuereporter</groupId>
             <artifactId>valuereporter</artifactId>
@@ -92,6 +119,7 @@
                     <groupId>com.fasterxml.jackson.dataformat</groupId>
                     <artifactId>jackson-core</artifactId>
                 </exclusion>
+              
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
                     <artifactId>logback-classic</artifactId>
@@ -131,30 +159,8 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!--archaius-core used by hystrix use commons logging -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!-- Jersey use jul -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!-- users of library should be able to choose log implementation -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-
+    
+		
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
