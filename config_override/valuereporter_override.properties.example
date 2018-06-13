@@ -1,12 +1,25 @@
 jetty.http.port=4901
 
 jdbc.setupNewDb=true
-jdbc.useEmbedded=true
+jdbc.useEmbedded=false
 
+##########Please comment out one of these config############
+
+##############1. HSQLDB##########
+#jdbc.useEmbedded=true
 #jdbc.driverClassName=org.hsqldb.jdbc.JDBCDriver
 #jdbc.url=jdbc:hsqldb:file:db/hsqldb/ValueReporter
-jdbc.url=jdbc:mysql://localhost:3306/ValueReporter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-jdbc.driverClassName=com.mysql.jdbc.Driver
+
+##############2. MySql##########
+#jdbc.driverClassName=org.hsqldb.jdbc.JDBCDriver
+#jdbc.url=jdbc:mysql://localhost:3306/ValueReporter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+##############3. MySql with MariaDB driver enabled##########
+#jdbc.driverClassName=org.mariadb.jdbc.Driver
+#jdbc.url=jdbc:mysql://localhost:3306/ValueReporter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+
+
 jdbc.username=vr
 jdbc.password=vr1234
 admin.connection.username=vrAdmin
