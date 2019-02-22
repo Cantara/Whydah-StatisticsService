@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.whydah.service</groupId>
     <artifactId>Whydah-StatisticsService</artifactId>
-    <version>2.5.10-SNAPSHOT</version>
+    <version>2.5.1-SNAPSHOT</version>
     <name>Whydah-StatisticsService</name>
     <packaging>jar</packaging>
     <url>https://wiki.cantara.no/display/iam/Whydah-StatisticsService</url>
@@ -17,20 +17,18 @@
         <developerConnection>scm:git:ssh://git@github.com/cantara/Whydah-StatisticsService.git</developerConnection>
         <connection>scm:git:https://github.com/cantara/Whydah-StatisticsService.git</connection>
         <url>https://github.com/cantara/Whydah-StatisticsService</url>
-      <tag>HEAD</tag>
-   </scm>
+    </scm>
 
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
         <org.valuereporter>0.11.2</org.valuereporter>
         <whydah.sdk.version>2.5.9</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
-        <slf4j.version>1.7.21</slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 
     <repositories>
-
         <!-- Needed for parent  -->
         <repository>
             <id>cantara-releases</id>
@@ -74,34 +72,12 @@
 
 
     <dependencies>
-		<dependency>
-	            <groupId>org.slf4j</groupId>
-	            <artifactId>jul-to-slf4j</artifactId>
-	            <version>${slf4j.version}</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.slf4j</groupId>
-	            <artifactId>log4j-over-slf4j</artifactId>
-	            <version>${slf4j.version}</version>
-	        </dependency>
-		<dependency>
-	        <groupId>org.slf4j</groupId>
-	        <artifactId>slf4j-api</artifactId>
-	        <version>${slf4j.version}</version>
-	    </dependency>
-	
-	    <dependency>
-	        <groupId>ch.qos.logback</groupId>
-	        <artifactId>logback-classic</artifactId>
-	        <version>1.2.3</version>
-	    </dependency>
-	
-	    <dependency>
-	        <groupId>ch.qos.logback</groupId>
-	        <artifactId>logback-core</artifactId>
-	        <version>1.2.3</version>
-	    </dependency>
-	    
+        <dependency>
+            <groupId>net.whydah.sso</groupId>
+            <artifactId>Whydah-Java-SDK</artifactId>
+            <version>${whydah.sdk.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.valuereporter</groupId>
             <artifactId>valuereporter</artifactId>
@@ -119,18 +95,19 @@
                     <groupId>com.fasterxml.jackson.dataformat</groupId>
                     <artifactId>jackson-core</artifactId>
                 </exclusion>
-              
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
                     <artifactId>logback-classic</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-jcl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>net.whydah.sso</groupId>
-            <artifactId>Whydah-Java-SDK</artifactId>
-            <version>${whydah.sdk.version}</version>
         </dependency>
 
 
@@ -159,15 +136,37 @@
             </exclusions>
         </dependency>
 
-    
-		
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- spring use Commons logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- Jersey use jul -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -340,5 +339,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
