@@ -7,6 +7,7 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.handler.RequestLogHandler;
+import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,6 +88,21 @@ public class Main {
         context.setContextPath(CONTEXT_PATH);
         context.setParentLoaderPriority(true);
 
+        //3. Including the JSTL jars for the webapp.
+        //context.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern",".*/[^/]*jstl.*\\.jar$");
+     
+        //4. Enabling the Annotation based configuration
+        //org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList.setServerDefault(server);
+        //classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration", "org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
+        //classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration", "org.eclipse.jetty.annotations.AnnotationConfiguration");
+         
+        Configuration.ClassList classlist = Configuration.ClassList
+                .setServerDefault( server );
+        classlist.addBefore(
+                "org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
+                "org.eclipse.jetty.annotations.AnnotationConfiguration" );
+
+        
         HandlerCollection handlers = new HandlerCollection();
         RequestLogHandler requestLogHandler = new RequestLogHandler();
         handlers.setHandlers(new Handler[]{context,new DefaultHandler(),requestLogHandler});
