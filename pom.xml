@@ -20,21 +20,12 @@
 
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
-        <org.valuereporter>1.0.20</org.valuereporter>
+        <org.valuereporter>1.0.21</org.valuereporter>
         <whydah.sdk.version>2.6.20</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <slf4j.version>1.7.30</slf4j.version>
         <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
-
-    <repositories>
-        <!-- Needed for parent  -->
-        <repository>
-            <id>cantara-releases</id>
-            <name>Cantara Release Repository</name>
-            <url>https://mvnrepo.cantara.no/content/repositories/releases/</url>
-        </repository>
-    </repositories>
 
     <developers>
         <developer>
@@ -338,4 +329,14 @@
             </plugin>
         </plugins>
     </build>
+    
+    <repositories>
+        <!-- Needed for parent  -->
+        <repository>
+            <id>cantara-releases</id>
+            <name>Cantara Release Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
 </project>
