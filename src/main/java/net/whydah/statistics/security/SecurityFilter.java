@@ -2,7 +2,7 @@ package net.whydah.statistics.security;
 
 import net.whydah.sso.commands.appauth.CommandGetApplicationIdFromApplicationTokenId;
 import net.whydah.sso.commands.appauth.CommandValidateApplicationTokenId;
-import net.whydah.sso.commands.userauth.CommandValidateUsertokenId;
+import net.whydah.sso.commands.userauth.CommandValidateUserTokenId;
 import org.constretto.annotation.Configuration;
 import org.constretto.annotation.Configure;
 import org.slf4j.Logger;
@@ -120,7 +120,7 @@ public class SecurityFilter implements Filter {
          */
         String usertokenId = findPathElement(pathInfo, 2).substring(1);
 
-        Boolean userTokenIsValid = new CommandValidateUsertokenId(tokenServiceUri, applicationTokenId, usertokenId).execute();
+        Boolean userTokenIsValid = new CommandValidateUserTokenId(tokenServiceUri, applicationTokenId, usertokenId).execute();
         if (!userTokenIsValid) {
             return HttpServletResponse.SC_UNAUTHORIZED;
         }
