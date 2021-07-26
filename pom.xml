@@ -20,7 +20,7 @@
 
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
-        <org.valuereporter>1.7.2</org.valuereporter>
+        <org.valuereporter>1.8.0</org.valuereporter>
         <whydah.sdk.version>2.7.10</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <slf4j.version>1.7.31</slf4j.version>
