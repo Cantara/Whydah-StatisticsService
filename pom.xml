@@ -20,8 +20,8 @@
 
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
-        <org.valuereporter>1.8.0</org.valuereporter>
-        <whydah.sdk.version>2.10.0</whydah.sdk.version>
+        <org.valuereporter>1.8.1</org.valuereporter>
+        <whydah.sdk.version>2.10.2</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <slf4j.version>1.7.32</slf4j.version>
         <additionalparam>-Xdoclint:none</additionalparam>
