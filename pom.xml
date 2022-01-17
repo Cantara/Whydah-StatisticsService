@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.whydah.service</groupId>
     <artifactId>Whydah-StatisticsService</artifactId>
-    <version>2.10.4-SNAPSHOT</version>
+    <version>2.10.5-SNAPSHOT</version>
     <name>Whydah-StatisticsService</name>
     <packaging>jar</packaging>
     <url>https://wiki.cantara.no/display/iam/Whydah-StatisticsService</url>
@@ -21,7 +21,7 @@
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
         <org.valuereporter>1.8.0</org.valuereporter>
-        <whydah.sdk.version>2.10.3</whydah.sdk.version>
+        <whydah.sdk.version>2.10.5</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <slf4j.version>1.7.33</slf4j.version>
         <additionalparam>-Xdoclint:none</additionalparam>
