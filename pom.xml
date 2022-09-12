@@ -24,7 +24,7 @@
         <org.valuereporter>1.10.2</org.valuereporter>
         <whydah.sdk.version>2.14.1</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
-        <slf4j.version>1.7.36</slf4j.version>
+        <slf4j.version>2.0.0</slf4j.version>
         <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 
@@ -239,8 +239,8 @@
                                 </excludes>
                             </artifactSet>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>META-INF/spring.schemas</resource>
                                 </transformer>
