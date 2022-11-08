@@ -61,12 +61,13 @@ public class Main {
 
     public static void main(String[] arguments) throws Exception {
     	
+    	//TODO: Huy comment this out due to some security persmission in java sdk
         // Jersey uses java.util.logging - bridge to slf4
-        LogManager.getLogManager().reset();
-        SLF4JBridgeHandler.removeHandlersForRootLogger();
-        SLF4JBridgeHandler.install();
+        //LogManager.getLogManager().reset();
+        //SLF4JBridgeHandler.removeHandlersForRootLogger();
+        //SLF4JBridgeHandler.install();
         //Enable openness in JerseyApplication logging.
-        LogManager.getLogManager().getLogger("").setLevel(Level.FINEST);
+        //LogManager.getLogManager().getLogger("").setLevel(Level.FINEST);
 
         Main main = new Main();
         try {
