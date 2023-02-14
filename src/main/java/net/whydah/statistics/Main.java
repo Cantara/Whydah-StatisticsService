@@ -11,7 +11,6 @@ import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.valuereporter.ValuereporterException;
 import org.valuereporter.helper.DatabaseMigrationHelper;
 import org.valuereporter.helper.EmbeddedDatabaseHelper;
@@ -21,8 +20,6 @@ import java.io.File;
 import java.net.BindException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
 
 
 public class Main {
@@ -158,17 +155,6 @@ public class Main {
         boolean useEmbedded = EmbeddedDatabaseHelper.useEmbeddedDb(resources);
         boolean useLocal = !useEmbedded;
         return useLocal;
-    }
-
-    boolean isFlywaySupported(Properties resources) {
-        boolean isSupported = false;
-        String url = resources.getProperty(DATABASE_URL);
-        if (url != null && url.contains("mysql")) {
-            isSupported = true;
-        } else {
-            log.info("Currently database migration supports mysql only. Database will not be automatically upgraded.");
-        }
-        return isSupported;
     }
 
     public int getPortNumber() {
