@@ -23,6 +23,7 @@
         <java.version>1.8</java.version>
         <org.valuereporter>1.14.2</org.valuereporter>
         <whydah.sdk.version>2.19.6</whydah.sdk.version>
+        <spring.version>5.3.26</spring.version>
         <org.constretto>2.2.3</org.constretto>
         <slf4j.version>1.7.36</slf4j.version>
         <additionalparam>-Xdoclint:none</additionalparam>
@@ -101,6 +102,38 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <!-- jcl over slf4j -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.constretto</groupId>
