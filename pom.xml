@@ -22,7 +22,7 @@
         <service.name>Whydah-StatisticsService</service.name>
         <java.version>1.8</java.version>
         <org.valuereporter>1.14.2</org.valuereporter>
-        <whydah.sdk.version>2.19.5</whydah.sdk.version>
+        <whydah.sdk.version>2.19.6</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <slf4j.version>1.7.36</slf4j.version>
         <additionalparam>-Xdoclint:none</additionalparam>
@@ -158,6 +158,14 @@
                 <exclusion>
                     <groupId>com.google.code.gson</groupId>
                     <artifactId>gson</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
