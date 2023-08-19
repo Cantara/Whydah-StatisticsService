@@ -25,7 +25,10 @@
         <whydah.sdk.version>2.19.12</whydah.sdk.version>
         <spring.version>5.3.29</spring.version>
         <org.constretto>2.2.3</org.constretto>
-        <slf4j.version>1.7.36</slf4j.version>
+        
+        <slf4j.version>2.0.7</slf4j.version>
+        <logback.version>1.4.11</logback.version>
+        <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 
@@ -224,28 +227,40 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
+	<dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <!-- spring use Commons logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <!-- Jersey use jul -->
+        <!-- Helidon and Jersey uses JUL -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <!-- we use logback as our logging framework -->
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.4.8</version>
+            <version>${logback.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-logback-encoder.version}</version>
+        </dependency>
+        
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -258,7 +273,19 @@
 		    <artifactId>commons-dbutils</artifactId>
 		    <version>1.8.0</version>
 		</dependency>
-		        
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client-jre6 -->
+		<dependency>
+		    <groupId>org.mariadb.jdbc</groupId>
+		    <artifactId>mariadb-java-client-jre6</artifactId>
+		    <version>1.6.1</version>
+		</dependency>
+				<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+		<dependency>
+		    <groupId>org.flywaydb</groupId>
+		    <artifactId>flyway-core</artifactId>
+		    <version>9.21.1</version>
+		</dependency>
+		 
     </dependencies>
 
     <build>
