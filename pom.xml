@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.whydah.service</groupId>
     <artifactId>Whydah-StatisticsService</artifactId>
-    <version>2.18.30-SNAPSHOT</version>
+    <version>2.18.31</version>
     <name>Whydah-StatisticsService</name>
     <packaging>jar</packaging>
     <url>https://wiki.cantara.no/display/iam/Whydah-StatisticsService</url>
@@ -15,7 +15,7 @@
         <developerConnection>scm:git:ssh://git@github.com/cantara/Whydah-StatisticsService.git</developerConnection>
         <connection>scm:git:https://github.com/cantara/Whydah-StatisticsService.git</connection>
         <url>https://github.com/cantara/Whydah-StatisticsService</url>
-      <tag>HEAD</tag>
+      <tag>Whydah-StatisticsService-2.18.31</tag>
   </scm>
 
     <properties>
