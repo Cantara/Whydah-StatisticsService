@@ -101,7 +101,7 @@ public class Main {
         
         HandlerCollection handlers = new HandlerCollection();
         RequestLogHandler requestLogHandler = new RequestLogHandler();
-        handlers.setHandlers(new Handler[]{context,new DefaultHandler(),requestLogHandler});
+        handlers.setHandlers(new Handler[]{context,new DefaultHandler(),requestLogHandler, new HealthHandler()});
         server.setHandler(handlers);
 
 
