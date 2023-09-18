@@ -21,7 +21,7 @@
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
         <java.version>11</java.version>
-        <org.valuereporter>1.22.0</org.valuereporter>
+        <org.valuereporter>1.22.1</org.valuereporter>
         <whydah.sdk.version>2.20.0</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <slf4j.version>2.0.9</slf4j.version>
