@@ -21,7 +21,7 @@
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
         <java.version>11</java.version>
-        <org.valuereporter>1.22.7</org.valuereporter>
+        <org.valuereporter>1.23.0</org.valuereporter>
         <whydah.sdk.version>2.21.12</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <slf4j.version>2.0.9</slf4j.version>
@@ -217,12 +217,12 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
-            <version>9.22.2</version>
+            <version>9.22.3</version>
         </dependency>
 		<dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>9.22.2</version>
+            <version>9.22.3</version>
         </dependency>
      
 	    <dependency>
