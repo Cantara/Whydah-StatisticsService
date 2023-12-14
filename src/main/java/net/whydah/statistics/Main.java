@@ -7,10 +7,10 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.handler.RequestLogHandler;
-import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.valuereporter.ValuereporterException;
 import org.valuereporter.helper.DatabaseMigrationHelper;
 import org.valuereporter.helper.EmbeddedDatabaseHelper;
@@ -20,6 +20,8 @@ import java.io.File;
 import java.net.BindException;
 import java.net.URL;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 
 
 public class Main {
@@ -60,11 +62,11 @@ public class Main {
     	
     	//TODO: Huy comment this out due to some security persmission in java sdk
         // Jersey uses java.util.logging - bridge to slf4
-        //LogManager.getLogManager().reset();
-        //SLF4JBridgeHandler.removeHandlersForRootLogger();
-        //SLF4JBridgeHandler.install();
+        LogManager.getLogManager().reset();
+        SLF4JBridgeHandler.removeHandlersForRootLogger();
+        SLF4JBridgeHandler.install();
         //Enable openness in JerseyApplication logging.
-        //LogManager.getLogManager().getLogger("").setLevel(Level.FINEST);
+        LogManager.getLogManager().getLogger("").setLevel(Level.FINEST);
 
         Main main = new Main();
         try {
