@@ -28,7 +28,7 @@
         <logback.version>1.4.14</logback.version>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <additionalparam>-Xdoclint:none</additionalparam>
-        <spring.version>5.3.35</spring.version>
+        <spring.version>5.3.36</spring.version>
     </properties>
 
     <developers>
