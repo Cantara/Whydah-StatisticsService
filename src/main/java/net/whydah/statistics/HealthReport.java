@@ -70,7 +70,7 @@ public class HealthReport{
 		sb.append(" \"").append("name").append("\"").append(":").append("\"").append(instanceName).append("\"").append(",\n");
 		sb.append(" \"").append("now").append("\"").append(":").append("\"").append(Instant.now()).append("\"").append(",\n");
 		sb.append(" \"").append("ip").append("\"").append(":").append("\"").append(getMyIPAddresssesString()).append("\"").append(",\n");
-		sb.append(" \"").append("running since").append("\"").append(":").append("\"").append(getRunningSince()).append("\"").append(",\n");
+		sb.append(" \"").append("running_since").append("\"").append(":").append("\"").append(getRunningSince()).append("\"").append(",\n");
 		for (String k : reportMap.keySet()) {
 			sb.append(" \"").append((keyNameDisplayList.containsKey(k) ? keyNameDisplayList.get(k) : k)).append("\"").append(":")
 					.append("\"").append(reportMap.get(k)).append("\"").append(",\n");
