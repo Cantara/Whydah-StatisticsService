@@ -14,16 +14,14 @@
     <scm>
         <developerConnection>scm:git:ssh://git@github.com/cantara/Whydah-StatisticsService.git</developerConnection>
         <connection>scm:git:https://github.com/cantara/Whydah-StatisticsService.git</connection>
-      <tag>Whydah-StatisticsService-2.27.1</tag>
   </scm>
 
     <properties>
         <service.name>Whydah-StatisticsService</service.name>
-        <java.version>11</java.version>
         <org.valuereporter>1.27.16</org.valuereporter>
         <whydah.sdk.version>2.27.3</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
-	<maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.release>11</maven.compiler.release>
         <slf4j.version>2.0.17</slf4j.version>
@@ -85,7 +83,25 @@
                 </exclusion>
             </exclusions>
         </dependency>
-	 
+        <!-- JAXB API -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <!-- JAXB Implementation -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <!-- Activation Framework -->
+        <dependency>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+
         <dependency>
             <groupId>org.constretto</groupId>
             <artifactId>constretto-core</artifactId>
