@@ -27,7 +27,7 @@
         <maven.compiler.release>11</maven.compiler.release>
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.4.14</logback.version>
-        <jersey.version>2.35</jersey.version>
+        <jersey.version>2.46</jersey.version>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <additionalparam>-Xdoclint:none</additionalparam>
         <spring.version>5.3.39</spring.version>
