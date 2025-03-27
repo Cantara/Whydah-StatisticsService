@@ -2,7 +2,8 @@ package net.whydah.statistics;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.valuereporter.*;
+import org.valuereporter.ValuereporterException;
+import org.valuereporter.ValuereporterTechnicalException;
 import org.valuereporter.helper.StatusType;
 
 import java.util.Properties;
@@ -24,7 +25,7 @@ public class PropertiesHelper {
             retPort = org.valuereporter.Main.DEFAULT_PORT_NO;
         } else {
             try {
-                retPort = new Integer(httpPort).intValue();
+                retPort = Integer.valueOf(httpPort).intValue();
             } catch (NumberFormatException nfe) {
                 log.error("Could not convert {} to int. No jetty port is set.", httpPort);
                 throw new ValuereporterTechnicalException("Proprerty 'jetty.http.port' with value "+ httpPort +" could not be cast to int.", StatusType.RETRY_NOT_POSSIBLE);
