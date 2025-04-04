@@ -132,6 +132,12 @@
             <version>2.12.1</version>
         </dependency>
         <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.constretto</groupId>
             <artifactId>constretto-spring</artifactId>
             <version>${org.constretto}</version>
