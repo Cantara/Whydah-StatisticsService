@@ -20,7 +20,7 @@
     <properties>
         <jdk.version>21</jdk.version>
         <service.name>Whydah-StatisticsService</service.name>
-        <org.valuereporter>1.27.17</org.valuereporter>
+        <org.valuereporter>2.0.0</org.valuereporter>
         <whydah.sdk.version>2.30.0</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <maven.compiler.source>21</maven.compiler.source>
