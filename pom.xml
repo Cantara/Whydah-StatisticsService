@@ -20,7 +20,7 @@
     <properties>
         <jdk.version>21</jdk.version>
         <service.name>Whydah-StatisticsService</service.name>
-        <org.valuereporter>2.0.3</org.valuereporter>
+        <org.valuereporter>2.1.0</org.valuereporter>
         <whydah.sdk.version>2.30.0</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <maven.compiler.source>21</maven.compiler.source>
@@ -28,10 +28,10 @@
         <maven.compiler.release>21</maven.compiler.release>
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.4.14</logback.version>
-        <jersey.version>2.35</jersey.version>
+        <jersey.version>3.1.5</jersey.version>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <additionalparam>-Xdoclint:none</additionalparam>
-        <spring.version>5.3.39</spring.version>
+        <spring.version>6.2.4</spring.version>
     </properties>
 
     <developers>
@@ -88,6 +88,42 @@
             </exclusions>
         </dependency>
 
+        <!-- Add Jersey dependencies -->
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-spring6</artifactId>
+            <version>${jersey.version}</version>
+            <exclusions>
+                <!-- Exclude conflicting dependencies -->
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-web</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
 
 
         <dependency>
@@ -125,6 +161,17 @@
                 </exclusion>
 
             </exclusions>
+        </dependency>
+        <!-- Add to pom.xml in the dependencies section -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>11.0.25</version> <!-- Use a compatible version -->
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>11.0.25</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

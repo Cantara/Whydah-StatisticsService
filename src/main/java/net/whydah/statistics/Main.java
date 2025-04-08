@@ -34,8 +34,17 @@ public class Main {
     private String resourceBase;
     private int jettyPort = -1;
 
+    static {
+        System.out.println("Main class is being loaded");
+    }
+
     public Main() {
+
+
         Properties resources = PropertiesHelper.findProperties();
+
+        // Log all loaded properties for debugging
+        logAllProperties(resources);
 
         try{
             new EmbeddedDatabaseHelper(resources).initializeDatabase();
@@ -58,31 +67,78 @@ public class Main {
         resourceBase = url.toExternalForm().replace("/WEB-INF/web.xml", "");
     }
 
+    // Helper method to log all properties
+    private void logAllProperties(Properties properties) {
+        System.out.println("Main method starting");
+        log.info("======= LOADED PROPERTIES =======");
+        // Log critical properties with extra visibility
+        logCriticalProperty(properties, "jdbc.useEmbedded");
+        logCriticalProperty(properties, "jdbc.setupNewDb");
+        logCriticalProperty(properties, "jdbc.driverClassName");
+        logCriticalProperty(properties, "jdbc.url");
+        logCriticalProperty(properties, "jdbc.username");
+        logCriticalProperty(properties, "jetty.http.port");
+
+        // Log all other properties
+        properties.stringPropertyNames().stream()
+                .sorted()
+                .forEach(key -> log.debug("Property: {} = {}", key, properties.getProperty(key)));
+        log.info("================================");
+    }
+
+    // Log critical properties with higher visibility
+    private void logCriticalProperty(Properties properties, String key) {
+        String value = properties.getProperty(key);
+        log.info("CRITICAL Property: {} = {}", key, value);
+    }
+
     public static void main(String[] arguments) throws Exception {
 
-        //TODO: Huy comment this out due to some security persmission in java sdk
-        // Jersey uses java.util.logging - bridge to slf4
-        LogManager.getLogManager().reset();
-        SLF4JBridgeHandler.removeHandlersForRootLogger();
-        SLF4JBridgeHandler.install();
-        //Enable openness in JerseyApplication logging.
-        LogManager.getLogManager().getLogger("").setLevel(Level.FINEST);
-
-        Main main = new Main();
         try {
-            main.start();
-            main.join();
-        } catch (ValuereporterException e) {
-            log.error("Failed to start the server. Reason {}. Port {} ", e.getMessage(), main.getPortNumber());
-            main.stopOnError();
+            System.out.println("About to reset LogManager");
+            LogManager.getLogManager().reset();
+            System.out.println("LogManager reset successful");
+
+            System.out.println("About to remove handlers for root logger");
+            SLF4JBridgeHandler.removeHandlersForRootLogger();
+            System.out.println("Removed handlers successfully");
+
+            System.out.println("About to install SLF4JBridgeHandler");
+            SLF4JBridgeHandler.install();
+            System.out.println("SLF4JBridgeHandler installed successfully");
+
+            System.out.println("About to set logger level");
+            LogManager.getLogManager().getLogger("").setLevel(Level.FINEST);
+            System.out.println("Logger level set successfully");
         } catch (Exception e) {
-            log.error("Failed to start. ", e);
+            System.out.println("Error in logging setup: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        System.out.println("Creating Main instance");
+        Main main = new Main();
+
+        try {
+            System.out.println("Calling main.start()");
+            main.start();
+            System.out.println("main.start() completed successfully");
+
+            System.out.println("Calling main.join()");
+            main.join();
+            System.out.println("main.join() completed");
+        } catch (Exception e) {
+            System.out.println("Error in main execution: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 
     public void start() throws RuntimeException {
         WebAppContext context = new WebAppContext();
         log.debug("Start Jetty using resourcebase={}", resourceBase);
+        context.setDefaultsDescriptor(null); // Don't use the default web.xml
+        context.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "false");
+
         context.setDescriptor(resourceBase + "/WEB-INF/web.xml");
         context.setResourceBase(resourceBase);
         context.setContextPath(CONTEXT_PATH);
