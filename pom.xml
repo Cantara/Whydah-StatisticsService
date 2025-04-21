@@ -21,7 +21,7 @@
         <jdk.version>21</jdk.version>
         <service.name>Whydah-StatisticsService</service.name>
         <org.valuereporter>2.1.2</org.valuereporter>
-        <whydah.sdk.version>2.30.0</whydah.sdk.version>
+        <whydah.sdk.version>2.30.5</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
