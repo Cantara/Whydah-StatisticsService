@@ -31,7 +31,7 @@
         <jersey.version>3.1.10</jersey.version>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <additionalparam>-Xdoclint:none</additionalparam>
-        <spring.version>6.2.6</spring.version>
+        <spring.version>6.2.7</spring.version>
     </properties>
 
     <developers>
