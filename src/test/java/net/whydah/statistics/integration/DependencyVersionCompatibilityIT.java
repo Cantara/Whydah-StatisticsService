@@ -1,4 +1,3 @@
-// Updated DependencyVersionCompatibilityIT - Realistic Version
 package net.whydah.statistics.integration;
 
 import org.junit.Test;
@@ -31,7 +30,7 @@ public class DependencyVersionCompatibilityIT {
             // Test the actual Jersey-Spring integration classes that exist and work
             Class.forName("org.glassfish.jersey.server.spring.SpringComponentProvider");
             Class.forName("org.glassfish.jersey.servlet.ServletContainer");
-            Class.forName("org.glassfish.jersey.ext.spring6.SpringComponentProvider"); // This is the actual Spring 6 integration class
+            // REMOVED the non-existent class: org.glassfish.jersey.ext.spring6.SpringComponentProvider
             log.info("✓ Jersey-Spring integration classes are available");
         } catch (ClassNotFoundException e) {
             fail("Jersey-Spring integration is not properly configured: " + e.getMessage());
