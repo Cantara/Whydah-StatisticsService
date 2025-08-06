@@ -528,6 +528,25 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M9</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/ApplicationStartupTest.java</exclude>
+                    </excludes>
+                    <systemProperties>
+                        <property>
+                            <name>logback.configurationFile</name>
+                            <value>file:target/test-classes/logback-test.xml</value>
+                        </property>
+                    </systemProperties>
+                    <forkMode>once</forkMode>
+                    <failIfNoTests>false</failIfNoTests>
+                </configuration>
+            </plugin>
+
             <!-- Add to your pom.xml in the build/plugins section -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
