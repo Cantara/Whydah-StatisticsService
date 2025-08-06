@@ -36,7 +36,12 @@ public class Main {
 
     static {
         System.out.println("Main class is being loaded");
+        // Disable Jersey virtual thread support at multiple levels
         System.setProperty("jersey.config.server.virtualThreads", "false");
+        System.setProperty("jersey.config.client.virtualThreads", "false");
+        System.setProperty("jersey.config.virtualThreads.disable", "true");
+        // Disable virtual thread executor
+        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "1");
     }
 
     public Main() {
