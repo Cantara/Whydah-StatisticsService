@@ -36,6 +36,7 @@ public class Main {
 
     static {
         System.out.println("Main class is being loaded");
+        System.setProperty("jersey.config.server.virtualThreads", "false");
     }
 
     public Main() {
