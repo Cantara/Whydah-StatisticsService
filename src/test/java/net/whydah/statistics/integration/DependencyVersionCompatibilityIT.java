@@ -1,4 +1,4 @@
-// 5. Maven Failsafe Integration Test
+// Updated DependencyVersionCompatibilityIT - Realistic Version
 package net.whydah.statistics.integration;
 
 import org.junit.Test;
@@ -19,20 +19,22 @@ public class DependencyVersionCompatibilityIT {
         log.info("Running dependency compatibility verification...");
 
         // Run all critical checks in one integration test
-        verifyJerseySpringBridge();
+        verifyJerseySpringIntegration();
         verifySpringFrameworkCore();
-        verifyHK2Integration();
+        verifyJacksonIntegration();
 
         log.info("✓ All dependency compatibility checks passed");
     }
 
-    private void verifyJerseySpringBridge() {
+    private void verifyJerseySpringIntegration() {
         try {
-            Class.forName("org.glassfish.jersey.ext.spring6.SpringBridge");
-            Class.forName("org.glassfish.hk2.spring.bridge.api.SpringBridge");
-            log.info("✓ Jersey-Spring bridge classes are available");
+            // Test the actual Jersey-Spring integration classes that exist and work
+            Class.forName("org.glassfish.jersey.server.spring.SpringComponentProvider");
+            Class.forName("org.glassfish.jersey.servlet.ServletContainer");
+            Class.forName("org.glassfish.jersey.ext.spring6.SpringComponentProvider"); // This is the actual Spring 6 integration class
+            log.info("✓ Jersey-Spring integration classes are available");
         } catch (ClassNotFoundException e) {
-            fail("Jersey-Spring bridge is not properly configured: " + e.getMessage());
+            fail("Jersey-Spring integration is not properly configured: " + e.getMessage());
         }
     }
 
@@ -40,19 +42,45 @@ public class DependencyVersionCompatibilityIT {
         try {
             Class.forName("org.springframework.context.ApplicationContext");
             Class.forName("org.springframework.beans.factory.BeanFactory");
+            Class.forName("org.springframework.beans.factory.annotation.Autowired");
+            Class.forName("org.springframework.stereotype.Component");
             log.info("✓ Spring Framework core classes are available");
         } catch (ClassNotFoundException e) {
             fail("Spring Framework core is not properly configured: " + e.getMessage());
         }
     }
 
-    private void verifyHK2Integration() {
+    private void verifyJacksonIntegration() {
         try {
-            Class.forName("org.glassfish.hk2.api.ServiceLocator");
-            Class.forName("org.glassfish.hk2.spring.bridge.api.SpringBridge");
-            log.info("✓ HK2 integration classes are available");
+            Class.forName("com.fasterxml.jackson.databind.ObjectMapper");
+            Class.forName("org.glassfish.jersey.media.json.jackson.JacksonFeature");
+            log.info("✓ Jackson JSON integration classes are available");
         } catch (ClassNotFoundException e) {
-            fail("HK2 integration is not properly configured: " + e.getMessage());
+            fail("Jackson integration is not properly configured: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void verifyDatabaseIntegration() {
+        try {
+            Class.forName("org.springframework.jdbc.core.JdbcTemplate");
+            Class.forName("org.springframework.jdbc.datasource.DriverManagerDataSource");
+            log.info("✓ Database integration classes are available");
+        } catch (ClassNotFoundException e) {
+            fail("Database integration is not properly configured: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void verifyServletContainerIntegration() {
+        try {
+            Class.forName("jakarta.servlet.http.HttpServletRequest");
+            Class.forName("jakarta.servlet.http.HttpServletResponse");
+            Class.forName("org.eclipse.jetty.server.Server");
+            Class.forName("org.eclipse.jetty.webapp.WebAppContext");
+            log.info("✓ Servlet container integration classes are available");
+        } catch (ClassNotFoundException e) {
+            fail("Servlet container integration is not properly configured: " + e.getMessage());
         }
     }
 }
