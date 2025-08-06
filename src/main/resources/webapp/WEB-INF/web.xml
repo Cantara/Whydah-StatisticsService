@@ -13,6 +13,10 @@
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>org.valuereporter.rest,net.whydah.statistics.rest</param-value>
         </init-param>
+        <init-param>
+            <param-name>jersey.config.server.virtualThreads</param-name>
+            <param-value>false</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
