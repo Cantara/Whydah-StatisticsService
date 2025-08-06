@@ -132,7 +132,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
-            <version>2.18.0</version>
+            <version>2.19.2</version>
         </dependency>
 
         <!-- Jersey Spring 6 Integration -->
