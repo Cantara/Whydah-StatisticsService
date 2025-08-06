@@ -11,7 +11,8 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>org.valuereporter.rest,net.whydah.statistics.rest</param-value>
+            <!-- Updated to scan all valuereporter packages, not just org.valuereporter.rest -->
+            <param-value>org.valuereporter,net.whydah.statistics.rest</param-value>
         </init-param>
         <init-param>
             <param-name>jersey.config.server.virtualThreads</param-name>
