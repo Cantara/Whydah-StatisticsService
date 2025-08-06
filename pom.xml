@@ -28,7 +28,8 @@
         <maven.compiler.release>21</maven.compiler.release>
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.4.14</logback.version>
-        <jersey.version>3.1.10</jersey.version>
+        <!-- Downgraded Jersey version for better Java 21 compatibility -->
+        <jersey.version>3.1.8</jersey.version>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <additionalparam>-Xdoclint:none</additionalparam>
         <spring.version>6.2.9</spring.version>
@@ -69,8 +70,6 @@
         </developer>
     </developers>
 
-
-
     <dependencies>
         <dependency>
             <groupId>net.whydah.sso</groupId>
@@ -81,7 +80,6 @@
             <groupId>org.valuereporter</groupId>
             <artifactId>valuereporter</artifactId>
             <version>${org.valuereporter}</version>
-
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -90,32 +88,61 @@
             </exclusions>
         </dependency>
 
+        <!-- Jersey Core Dependencies - Complete set -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-common</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+
+        <!-- Jersey Servlet Container -->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
             <version>${jersey.version}</version>
         </dependency>
+
+        <!-- Jersey HK2 Dependency Injection -->
         <dependency>
             <groupId>org.glassfish.jersey.inject</groupId>
             <artifactId>jersey-hk2</artifactId>
             <version>${jersey.version}</version>
         </dependency>
+
+        <!-- Jersey JSON Support -->
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>${jersey.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.glassfish.hk2/spring-bridge -->
+        <!-- Jersey Spring 6 Integration -->
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-spring6</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+
+        <!-- HK2 Spring Bridge -->
         <dependency>
             <groupId>org.glassfish.hk2</groupId>
             <artifactId>spring-bridge</artifactId>
             <version>3.1.1</version>
         </dependency>
 
-
-
+        <!-- Constretto Configuration -->
         <dependency>
             <groupId>org.constretto</groupId>
             <artifactId>constretto-core</artifactId>
@@ -149,36 +176,9 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>jcl-over-slf4j</artifactId>
                 </exclusion>
-
             </exclusions>
         </dependency>
-        <!-- Add to pom.xml in the dependencies section -->
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlet</artifactId>
-            <version>11.0.25</version> <!-- Use a compatible version -->
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-webapp</artifactId>
-            <version>11.0.25</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.13.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>8.0.2.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.1.0</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.constretto</groupId>
             <artifactId>constretto-spring</artifactId>
@@ -220,95 +220,45 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>jcl-over-slf4j</artifactId>
                 </exclusion>
-
             </exclusions>
         </dependency>
 
-
+        <!-- Jetty Dependencies -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!-- CXF and jersey use java.util logging -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>11.0.25</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>11.0.25</version>
         </dependency>
 
+        <!-- Other Dependencies -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.5.18</version>
-            <scope>runtime</scope>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
+            <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>3.5.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- JUnit Vintage Engine for JUnit 4 compatibility - aligned version -->
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Explicitly specify platform dependencies to ensure alignment -->
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <version>${junit-platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-engine</artifactId>
-            <version>${junit-platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-commons</artifactId>
-            <version>${junit-platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-mysql</artifactId>
-            <version>9.22.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>9.22.3</version>
-        </dependency>
-
+        <!-- Spring Framework Dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
             <exclusions>
-                <!-- jcl over slf4j -->
                 <exclusion>
                     <groupId>commons-logging</groupId>
                     <artifactId>commons-logging</artifactId>
@@ -336,14 +286,79 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- Logging Dependencies -->
         <dependency>
-            <groupId>org.glassfish.jersey.ext</groupId>
-            <artifactId>jersey-spring6</artifactId>
-            <version>${jersey.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.18</version>
+            <scope>runtime</scope>
         </dependency>
 
+        <!-- Database Dependencies -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+            <version>9.22.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>9.22.3</version>
+        </dependency>
 
-        <!-- Also add Jersey Test Framework for testing -->
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit-platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>${junit-platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <version>${junit-platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Jersey Test Dependencies -->
         <dependency>
             <groupId>org.glassfish.jersey.test-framework</groupId>
             <artifactId>jersey-test-framework-core</artifactId>
@@ -356,11 +371,11 @@
             <version>${jersey.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Maven Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -389,6 +404,31 @@
                 </configuration>
             </plugin>
 
+            <!-- Maven Failsafe Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M9</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <systemProperties>
+                        <property>
+                            <name>jdbc.useEmbedded</name>
+                            <value>true</value>
+                        </property>
+                    </systemProperties>
+                    <argLine>-Xmx512m -XX:MaxMetaspaceSize=256m</argLine>
+                </configuration>
+            </plugin>
+
+            <!-- Exec Maven Plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -404,6 +444,8 @@
                     <mainClass>net.whydah.statistics.Main</mainClass>
                 </configuration>
             </plugin>
+
+            <!-- Maven Jar Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -419,6 +461,8 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <!-- Maven Shade Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -462,7 +506,8 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--Create Windows, and Unix/Linux installation script -->
+
+            <!-- App Assembler Plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>appassembler-maven-plugin</artifactId>
@@ -482,7 +527,6 @@
                                 <generatorConfiguration>
                                     <generator>jsw</generator>
                                     <includes>
-                                        <!--<include>windows-x86-32</include>-->
                                         <include>windows-x86-64</include>
                                     </includes>
                                     <configuration>
@@ -498,7 +542,6 @@
                                             <name>wrapper.logfile</name>
                                             <value>logs/wrapper.log</value>
                                         </property>
-
                                         <property>
                                             <name>wrapper.console.title</name>
                                             <value>${service.name}</value>
@@ -521,7 +564,6 @@
                                     <extraArgument>-XX:PermSize=32m</extraArgument>
                                     <extraArgument>-XX:MaxPermSize=32m</extraArgument>
                                     <extraArgument>-DIAM_MODE=PROD</extraArgument>
-                                    <!--<extraArgument>-Dlogback.configurationFile=file:config_override/logback.xml</extraArgument>-->
                                 </extraArguments>
                             </jvmSettings>
                         </daemon>
@@ -537,6 +579,8 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Maven Assembly Plugin -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -555,40 +599,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M9</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/ApplicationStartupTest.java</exclude>
-                    </excludes>
-                    <systemProperties>
-                        <property>
-                            <name>logback.configurationFile</name>
-                            <value>file:target/test-classes/logback-test.xml</value>
-                        </property>
-                    </systemProperties>
-                    <forkMode>once</forkMode>
-                    <failIfNoTests>false</failIfNoTests>
-                </configuration>
-            </plugin>
-
-            <!-- Add to your pom.xml in the build/plugins section -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
@@ -600,5 +610,4 @@
             <url>https://mvnrepo.cantara.no/content/repositories/releases/</url>
         </repository>
     </repositories>
-
 </project>
