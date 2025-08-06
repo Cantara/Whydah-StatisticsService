@@ -6,11 +6,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import net.whydah.sso.commands.appauth.CommandGetApplicationIdFromApplicationTokenId;
 import net.whydah.sso.commands.appauth.CommandValidateApplicationTokenId;
 import net.whydah.sso.commands.userauth.CommandValidateUserTokenId;
-import org.constretto.annotation.Configuration;
-import org.constretto.annotation.Configure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ import java.net.URI;
 import java.util.regex.Pattern;
 
 /**
- * SecurityFilter is reponsible for verifying applicationTokenId and userTokenId against STS.
+ * SecurityFilter is responsible for verifying applicationTokenId and userTokenId against STS.
  * Verifying application and user roles is the responsibility of UIB.
  *
  * @author <a href="mailto:erik-dev@fjas.no">Erik Drolshammer</a> 2015-11-22
@@ -32,8 +31,8 @@ public class SecurityFilter implements Filter {
     URI tokenServiceUri;
 
     @Autowired
-    @Configure
-    public SecurityFilter(@Configuration("securitytokenservice") String stsUri, @Configuration("securitytokenservice.appid") String stsAppId) {
+    public SecurityFilter(@Value("${securitytokenservice:http://localhost:9998/tokenservice}") String stsUri,
+                          @Value("${securitytokenservice.appid:2211}") String stsAppId) {
         this.stsUri = stsUri;
         this.stsAppId = stsAppId;
         if (this.stsAppId == null || this.stsAppId.equals("")) {
@@ -69,7 +68,7 @@ public class SecurityFilter implements Filter {
 
 
         String applicationTokenId = findPathElement(pathInfo, 1).substring(1);
-        //" we should probably avoid askin sts if we know it is sts asking, but we should ask sts for a valid applicationsession for all other applications"
+        //" we should probably avoid asking sts if we know it is sts asking, but we should ask sts for a valid applicationsession for all other applications"
         String appId = new CommandGetApplicationIdFromApplicationTokenId(URI.create(stsUri), applicationTokenId).execute();
         if (appId == null) {
             return HttpServletResponse.SC_UNAUTHORIZED;
@@ -88,7 +87,7 @@ public class SecurityFilter implements Filter {
         //strip applicationTokenId from pathInfo
         path = path.substring(path.indexOf("/"));
         /*
-        /{applicationTokenId}/auth/password/reset/{usernaem}     //PasswordResource2
+        /{applicationTokenId}/auth/password/reset/{username}     //PasswordResource2
         /{applicationTokenId}/user/{uid}/reset_password     //PasswordResource2
         /{applicationTokenId}/user/{uid}/change_password    //PasswordResource2
         /{applicationTokenId}/authenticate/user/*           //UserAuthenticationEndpoint

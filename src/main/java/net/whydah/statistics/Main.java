@@ -39,8 +39,6 @@ public class Main {
     }
 
     public Main() {
-
-
         Properties resources = PropertiesHelper.findProperties();
 
         // Log all loaded properties for debugging
@@ -162,7 +160,6 @@ public class Main {
         handlers.setHandlers(new Handler[]{context,new DefaultHandler(),requestLogHandler, new HealthHandler()});
         server.setHandler(handlers);
 
-
         enableRequestLogging(requestLogHandler);
 
         try {
@@ -177,7 +174,55 @@ public class Main {
             throw new ValuereporterException("Failed to initialize Spring Application Context." , springStartupFailed, StatusType.RETRY_NOT_POSSIBLE);
         }
         int localPort = getPortNumber();
+
+        // Report the exposed URLs
+        reportExposedUrls(localPort);
+
         log.info("Jetty server started on port {}, context path {}", localPort, CONTEXT_PATH);
+    }
+
+    /**
+     * Reports all the exposed URLs and endpoints for the application
+     */
+    private void reportExposedUrls(int port) {
+        String baseUrl = "http://localhost:" + port;
+
+        log.info("=================================================================");
+        log.info("🚀 WHYDAH STATISTICS SERVICE STARTED SUCCESSFULLY");
+        log.info("=================================================================");
+        log.info("📊 APPLICATION URLS:");
+        log.info("   Main Application: {}{}", baseUrl, CONTEXT_PATH);
+        log.info("   Health Check:     {}{}/health", baseUrl, CONTEXT_PATH);
+        log.info("=================================================================");
+        log.info("🔌 API ENDPOINTS:");
+        log.info("   ValueReporter API: {}{}/observe/*", baseUrl, CONTEXT_PATH);
+        log.info("   Statistics API:    {}{}/observe/statistics/*", baseUrl, CONTEXT_PATH);
+        log.info("   Activities API:    {}{}/observe/activities/*", baseUrl, CONTEXT_PATH);
+        log.info("   Observations API:  {}{}/observe/observations/*", baseUrl, CONTEXT_PATH);
+        log.info("=================================================================");
+        log.info("📋 MANAGEMENT URLS:");
+        log.info("   Spring Context:   {}{}/observe/status", baseUrl, CONTEXT_PATH);
+        log.info("   Application Info: {}{}/observe/info", baseUrl, CONTEXT_PATH);
+        log.info("=================================================================");
+        log.info("🔧 CONFIGURATION:");
+        log.info("   Context Path: {}", CONTEXT_PATH);
+        log.info("   Port: {}", port);
+        log.info("   Resource Base: {}", resourceBase);
+        log.info("=================================================================");
+        log.info("✅ Service is ready to accept requests!");
+        log.info("=================================================================");
+
+        // Also output to console for visibility
+        System.out.println("\n" + "=".repeat(65));
+        System.out.println("🚀 WHYDAH STATISTICS SERVICE STARTED SUCCESSFULLY");
+        System.out.println("=".repeat(65));
+        System.out.println("📊 MAIN URLS:");
+        System.out.println("   • Health Check: " + baseUrl + CONTEXT_PATH + "/health");
+        System.out.println("   • API Endpoints: " + baseUrl + CONTEXT_PATH + "/observe/*");
+        System.out.println("   • Statistics: " + baseUrl + CONTEXT_PATH + "/observe/statistics/*");
+        System.out.println("=".repeat(65));
+        System.out.println("✅ Service is ready!");
+        System.out.println("=".repeat(65) + "\n");
     }
 
     private void enableRequestLogging(RequestLogHandler requestLogHandler) {
