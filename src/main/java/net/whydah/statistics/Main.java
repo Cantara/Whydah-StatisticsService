@@ -63,7 +63,7 @@ public class Main {
 
         server = new Server(jettyPort);
 
-        URL url = ClassLoader.getSystemResource("webapp/WEB-INF/web.xml");
+        URL url = Main.class.getClassLoader().getResource("webapp/WEB-INF/web.xml");
         resourceBase = url.toExternalForm().replace("/WEB-INF/web.xml", "");
     }
 
