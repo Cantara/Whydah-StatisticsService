@@ -132,7 +132,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
-            <version>2.20.0</version>
+            <version>2.20.1</version>
         </dependency>
 
         <!-- Add this dependency to resolve the jakarta.activation.DataSource issue -->
