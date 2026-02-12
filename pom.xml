@@ -32,7 +32,7 @@
         <jersey.version>3.1.11</jersey.version>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <additionalparam>-Xdoclint:none</additionalparam>
-        <spring.version>6.2.15</spring.version>
+        <spring.version>6.2.16</spring.version>
         <junit.version>6.0.2</junit.version>
         <junit-platform.version>6.0.2</junit-platform.version>
     </properties>
