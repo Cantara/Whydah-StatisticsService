@@ -1,0 +1,21 @@
+id: Whydah-StatisticsService
+name: Whydah Statistics Service
+version: 2.31.8-SNAPSHOT
+description: |
+  Usage statistics service for the Whydah platform. Collects and aggregates
+  authentication events, login counts, and active-session metrics for reporting
+  and capacity planning.
+units:
+  - id: stats-collector
+    name: Stats Collector
+    type: service
+    description: Event collection and aggregation — ingests login and session events in real time.
+    path: src/main/java/net/whydah/service
+  - id: reporting-api
+    name: Reporting API
+    type: api
+    description: REST API for querying aggregated statistics by time range and event type.
+  - id: storage
+    name: Storage
+    type: component
+    description: Time-series data storage for authentication and session event records.
