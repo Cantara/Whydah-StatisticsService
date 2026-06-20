@@ -1,3 +1,17 @@
+kcp_version: "0.21"
+updated: "2026-06-20"
+language: en
+license: "Apache-2.0"
+indexing: private
+temporal:
+  valid_from: "2026-03-10"
+signing:
+  scheme: ed25519
+  scope: this-manifest
+  public_key: "MCowBQYDK2VwAyEAuipgusnqU9vjf3p2yPVLD/DmERT6tBbLOqEETdxAhMU="
+  signature: "https://raw.githubusercontent.com/Cantara/Whydah-StatisticsService/master/knowledge.yaml.sig"
+not_for: []
+
 id: Whydah-StatisticsService
 name: Whydah Statistics Service
 version: 2.31.8-SNAPSHOT
@@ -11,11 +25,20 @@ units:
     type: service
     description: Event collection and aggregation — ingests login and session events in real time.
     path: src/main/java/net/whydah/service
+      content_hash:
+        algorithm: sha256
+        value: ""
   - id: reporting-api
     name: Reporting API
     type: api
     description: REST API for querying aggregated statistics by time range and event type.
+      content_hash:
+        algorithm: sha256
+        value: ""
   - id: storage
     name: Storage
     type: component
     description: Time-series data storage for authentication and session event records.
+      content_hash:
+        algorithm: sha256
+        value: ""
