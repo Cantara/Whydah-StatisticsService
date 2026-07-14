@@ -1,4 +1,4 @@
-kcp_version: "0.21"
+kcp_version: "0.26"
 updated: "2026-06-20"
 language: en
 license: "Apache-2.0"
@@ -25,20 +25,19 @@ units:
     type: service
     description: Event collection and aggregation — ingests login and session events in real time.
     path: src/main/java/net/whydah/service
-      content_hash:
-        algorithm: sha256
-        value: ""
   - id: reporting-api
     name: Reporting API
     type: api
     description: REST API for querying aggregated statistics by time range and event type.
-      content_hash:
-        algorithm: sha256
-        value: ""
   - id: storage
     name: Storage
     type: component
     description: Time-series data storage for authentication and session event records.
-      content_hash:
-        algorithm: sha256
-        value: ""
+
+# Serving Endpoint Binding (KCP SPEC v0.26 §3.12): authoritative manifest URL
+# and authorized MCP representative. Ignored by pre-0.26 verifiers.
+serving:
+  manifest:
+    - https://raw.githubusercontent.com/Cantara/Whydah-StatisticsService/master/knowledge.yaml
+  mcp:
+    - https://mcp.cantara.no/mcp
