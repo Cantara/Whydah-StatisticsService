@@ -21,6 +21,11 @@
         <jdk.version>21</jdk.version>
         <service.name>Whydah-StatisticsService</service.name>
         <org.valuereporter>2.1.12</org.valuereporter>
+        <!-- MUST match the flyway.version bundled inside the org.valuereporter:valuereporter
+             jar-with-dependencies. A newer Flyway here is merged with Valuereporter's copy by
+             the shade plugin and the startup fails with
+             IncompatibleClassChangeError: CoreErrorCode can not implement ErrorCode. -->
+        <flyway.version>9.22.3</flyway.version>
         <whydah.sdk.version>3.1.13</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <maven.compiler.source>21</maven.compiler.source>
@@ -341,12 +346,12 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
-            <version>13.3.0</version>
+            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>13.3.0</version>
+            <version>${flyway.version}</version>
         </dependency>
 
         <!-- Test Dependencies -->

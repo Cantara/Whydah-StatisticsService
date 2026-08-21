@@ -2,5 +2,17 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>cantara/Cantara-Renovate-Config"
+  ],
+  "packageRules": [
+    {
+      "description": "Flyway is pinned to 9.22.3 because org.valuereporter:valuereporter is published as a jar-with-dependencies that bundles Flyway 9.22.3. A newer Flyway here ends up merged with that copy in the shaded uber-jar, and the service dies at startup with 'IncompatibleClassChangeError: class org.flywaydb.core.api.CoreErrorCode can not implement org.flywaydb.core.api.ErrorCode'. This broke prod in 2.31.14 (Aug 2026). Re-enable once Valuereporter stops publishing a fat main artifact.",
+      "matchManagers": [
+        "maven"
+      ],
+      "matchPackageNames": [
+        "org.flywaydb:**"
+      ],
+      "enabled": false
+    }
   ]
 }
