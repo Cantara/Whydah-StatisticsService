@@ -26,7 +26,7 @@
              the shade plugin and the startup fails with
              IncompatibleClassChangeError: CoreErrorCode can not implement ErrorCode. -->
         <flyway.version>9.22.3</flyway.version>
-        <whydah.sdk.version>3.1.13</whydah.sdk.version>
+        <whydah.sdk.version>3.1.14</whydah.sdk.version>
         <org.constretto>2.2.3</org.constretto>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
